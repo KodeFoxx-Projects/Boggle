@@ -28,7 +28,12 @@ namespace Kf.Boggle.Domain.Board
         private readonly Random _random;
 
         public string this[int width, int height] {
-            get => _matrix[height - 1, width - 1];
+            get {
+                if (this == BoggleBoard.Empty)
+                    return String.Empty;
+
+                return _matrix[height - 1, width - 1];
+            }
         }
 
         public int Width

@@ -13,6 +13,13 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
             Assert.Equal(0, BoggleBoard.Empty.Height);
         }
 
+        public void Empty_board_property_index_returns_empty_string()
+        {
+            var sut = BoggleBoard.Empty;
+
+            Assert.Equal(String.Empty, sut[1, 1]);
+        }
+
         [Fact]
         public void Board_translates_with_and_height_correctly()
         {
