@@ -1,4 +1,5 @@
 ﻿using Kf.Boggle.Domain.Board;
+using System;
 using Xunit;
 
 namespace Kg.Boggle.Tests.UnitTests.Domain.Board
@@ -47,6 +48,17 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
             Assert.Equal("e", sut[2, 3]);
             Assert.Equal("p", sut[3, 2]);
             Assert.Equal("n", sut[4, 4]);
+
+            Assert.Equal(
+                "rups",
+                String.Join(
+                    "", new[] {
+                        sut[3, 4],
+                        sut[3, 3],
+                        sut[3, 2],
+                        sut[4, 2],
+                    })
+                );
         }
 
         private static string[,] GetPremadeBoard_4x4()
