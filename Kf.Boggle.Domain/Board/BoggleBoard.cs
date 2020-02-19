@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Kf.Boggle.Domain.Board
 {
@@ -53,6 +54,11 @@ namespace Kf.Boggle.Domain.Board
         public bool IsWidthInRange(int width)
             => (width - 1 <= Width && width - 1 >= 0)
                 && width <= Width;
+
+        public bool Contains(string letter)
+            => _matrix
+                .Cast<string>()
+                .Contains(letter);
 
         private string[,] CreateMatrix(int width, int height)
         {

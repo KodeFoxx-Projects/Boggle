@@ -112,6 +112,23 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
                 );
         }
 
+        [Theory]
+        [InlineData("x", false)]
+        [InlineData("d", true)]
+        [InlineData("l", true)]
+        [InlineData("e", true)]
+        [InlineData("t", true)]
+        [InlineData("o", true)]
+        [InlineData("q", false)]
+        [InlineData("a", false)]
+        public void Contains_returns_true_when_letter_is_board(
+            string letter, bool expected)
+        {
+            var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
+
+            Assert.Equal(expected, sut.Contains(letter));
+        }
+
         private static string[,] GetPremadeBoard_4x4()
             => new[,] {
                 { "d", "g", "h", "i" },
