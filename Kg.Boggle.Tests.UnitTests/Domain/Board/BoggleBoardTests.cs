@@ -45,7 +45,7 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
             Assert.Equal("d", sut[1, 1]);
             Assert.Equal("l", sut[2, 2]);
             Assert.Equal("e", sut[2, 3]);
-            //Assert.Equal("p", sut[3, 2]);
+            Assert.Equal("p", sut[3, 2]);
             Assert.Equal("n", sut[4, 4]);
         }
 

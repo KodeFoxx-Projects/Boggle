@@ -28,25 +28,23 @@ namespace Kf.Boggle.Domain.Board
         private readonly Random _random;
 
         public string this[int width, int height] {
-            get => _matrix[width - 1, height - 1];
+            get => _matrix[height - 1, width - 1];
         }
 
         public int Width
-            => _matrix.GetLength(0);
-        public int Height
             => _matrix.GetLength(1);
+        public int Height
+            => _matrix.GetLength(0);
 
         private string[,] CreateMatrix(int width, int height)
         {
-            var matrix = new string[width, height];
+            var matrix = new string[height, width];
             var characters = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
 
-            for (var w = 0; w < width; w++)
+            for (var h = 0; h < height; h++)
             {
-                for (var h = 0; h < height; h++)
-                {
-                    matrix[w, h] = characters[_random.Next(0, characters.Length)].ToString();
-                }
+                for (var w = 0; w < width; w++)
+                    matrix[h, w] = characters[_random.Next(0, characters.Length)].ToString();
             }
 
             return matrix;
