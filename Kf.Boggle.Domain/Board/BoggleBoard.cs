@@ -29,10 +29,16 @@ namespace Kf.Boggle.Domain.Board
 
         public string this[int width, int height] {
             get {
-                if (this == BoggleBoard.Empty)
+                if (this.Width == 0 && this.Height == 0)
                     return String.Empty;
 
-                return _matrix[height - 1, width - 1];
+                var h = height - 1;
+                var w = width - 1;
+
+                if (IsHeightInRange(height) && IsWidthInRange(width))
+                    return _matrix[h, w];
+
+                return String.Empty;
             }
         }
 
@@ -40,6 +46,13 @@ namespace Kf.Boggle.Domain.Board
             => _matrix.GetLength(1);
         public int Height
             => _matrix.GetLength(0);
+
+        public bool IsHeightInRange(int height)
+            => (height - 1 <= Height && height - 1 >= 0)
+                && height <= Height;
+        public bool IsWidthInRange(int width)
+            => (width - 1 <= Width && width - 1 >= 0)
+                && width <= Width;
 
         private string[,] CreateMatrix(int width, int height)
         {

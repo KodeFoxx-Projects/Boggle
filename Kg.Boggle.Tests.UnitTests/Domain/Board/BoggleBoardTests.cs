@@ -13,11 +13,55 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
             Assert.Equal(0, BoggleBoard.Empty.Height);
         }
 
+        [Fact]
         public void Empty_board_property_index_returns_empty_string()
         {
             var sut = BoggleBoard.Empty;
 
             Assert.Equal(String.Empty, sut[1, 1]);
+        }
+
+        [Theory]
+        [InlineData(0, false)]
+        [InlineData(1, true)]
+        [InlineData(2, true)]
+        [InlineData(3, true)]
+        [InlineData(4, true)]
+        [InlineData(5, false)]
+        public void IsHeightInRange_returns_true_when_in_range_false_when_not(
+            int height, bool expected)
+        {
+            var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
+
+            Assert.Equal(expected, sut.IsHeightInRange(height));
+        }
+
+        [Theory]
+        [InlineData(0, false)]
+        [InlineData(1, true)]
+        [InlineData(2, true)]
+        [InlineData(3, true)]
+        [InlineData(4, true)]
+        [InlineData(5, false)]
+        public void IsWidthInRange_returns_true_when_in_range_false_when_not(
+            int width, bool expected)
+        {
+            var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
+
+            Assert.Equal(expected, sut.IsWidthInRange(width));
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(5, 5)]
+        [InlineData(-1, 1)]
+        [InlineData(20, 20)]
+        public void Index_out_of_bounds_on_property_index_returns_empty_string(
+            int width, int height)
+        {
+            var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
+
+            Assert.Equal(String.Empty, sut[width, height]);
         }
 
         [Fact]
