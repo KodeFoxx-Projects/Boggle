@@ -23,5 +23,38 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
             Assert.Equal(width, sut.Width);
             Assert.Equal(height, sut.Height);
         }
+
+        [Fact]
+        public void Create_board_from_matrix_width_and_height_match()
+        {
+            var matrix = GetPremadeBoard_4x4();
+
+            var sut = BoggleBoard.Create(matrix);
+
+            Assert.Equal(4, sut.Height);
+            Assert.Equal(4, sut.Width);
+        }
+
+        [Fact]
+        public void Property_indexer_for_full_board_is_not_zero_based()
+        {
+            var matrix = GetPremadeBoard_4x4();
+
+            var sut = BoggleBoard.Create(matrix);
+
+            Assert.Equal("d", sut[1, 1]);
+            Assert.Equal("l", sut[2, 2]);
+            Assert.Equal("e", sut[2, 3]);
+            //Assert.Equal("p", sut[3, 2]);
+            Assert.Equal("n", sut[4, 4]);
+        }
+
+        private static string[,] GetPremadeBoard_4x4()
+            => new[,] {
+                { "d", "g", "h", "i" },
+                { "k", "l", "p", "s" },
+                { "y", "e", "u", "t" },
+                { "e", "o", "r", "n" },
+            };
     }
 }
