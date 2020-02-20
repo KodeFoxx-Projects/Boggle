@@ -60,6 +60,26 @@ namespace Kf.Boggle.Domain.Board
                 .Cast<string>()
                 .Contains(letter);
 
+        public bool ContainsLetter(char letter)
+            => ContainsLetter(letter.ToString());
+
+        public bool ContainsLetters(char[] letters)
+            => letters.All(ContainsLetter);
+
+        public bool ContainsWord(string word)
+        {
+            if (String.IsNullOrWhiteSpace(word))
+                return false;
+
+            if (word.Length <= 2)
+                return false;
+            
+            if (!ContainsLetters(word.ToCharArray()))
+                return false;
+
+            return true;
+        }
+
         private string[,] CreateMatrix(int width, int height)
         {
             var matrix = new string[height, width];

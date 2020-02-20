@@ -121,12 +121,32 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
         [InlineData("o", true)]
         [InlineData("q", false)]
         [InlineData("a", false)]
-        public void Contains_returns_true_when_letter_is_board(
+        public void ContainsLetter_returns_true_when_letter_is_board(
             string letter, bool expected)
         {
             var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
 
             Assert.Equal(expected, sut.ContainsLetter(letter));
+        }
+
+        [Theory]
+        [InlineData("matrix", false)]
+        [InlineData("super", true)]
+        [InlineData("rups", true)]
+        [InlineData("sip", true)]
+        [InlineData("hips", true)]
+        [InlineData("hi", false)]
+        [InlineData("nroe", true)]
+        [InlineData("nr", false)]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("     ", false)]
+        public void ContainsWord_returns_true_when_letter_is_board(
+            string letter, bool expected)
+        {
+            var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
+
+            Assert.Equal(expected, sut.ContainsWord(letter));
         }
 
         private static string[,] GetPremadeBoard_4x4()
