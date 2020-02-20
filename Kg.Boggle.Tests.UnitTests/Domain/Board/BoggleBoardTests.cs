@@ -137,6 +137,7 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
         [InlineData("hips", true)]
         [InlineData("hi", false)]
         [InlineData("nroe", true)]
+        [InlineData("hue", false)]
         [InlineData("nr", false)]
         [InlineData(null, false)]
         [InlineData("", false)]
