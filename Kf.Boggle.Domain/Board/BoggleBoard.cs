@@ -55,7 +55,7 @@ namespace Kf.Boggle.Domain.Board
             => (width - 1 <= Width && width - 1 >= 0)
                 && width <= Width;
 
-        public bool Contains(string letter)
+        public bool ContainsLetter(string letter)
             => _matrix
                 .Cast<string>()
                 .Contains(letter);

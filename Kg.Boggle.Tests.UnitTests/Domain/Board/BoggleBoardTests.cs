@@ -126,7 +126,7 @@ namespace Kg.Boggle.Tests.UnitTests.Domain.Board
         {
             var sut = BoggleBoard.Create(GetPremadeBoard_4x4());
 
-            Assert.Equal(expected, sut.Contains(letter));
+            Assert.Equal(expected, sut.ContainsLetter(letter));
         }
 
         private static string[,] GetPremadeBoard_4x4()
